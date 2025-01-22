@@ -1,5 +1,7 @@
 # Kafka SSL Configuration
 
+[![Build and Test](https://github.com/sbouhaddi/kafka-request-reply/actions/workflows/gradle.yml/badge.svg)](https://github.com/sbouhaddi/kafka-request-reply/actions/workflows/gradle.yml)
+
 Ce projet contient une configuration Docker Compose pour déployer Kafka avec SSL.
 
 ## Prérequis
