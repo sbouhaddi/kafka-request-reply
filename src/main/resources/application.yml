@@ -1,0 +1,39 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9093
+    properties:
+      security.protocol: SSL
+      ssl.truststore.location: ${user.dir}/ssl/kafka.client.truststore.jks
+      ssl.truststore.password: password123
+      ssl.keystore.location: ${user.dir}/ssl/kafka.client.keystore.p12
+      ssl.keystore.password: password123
+      ssl.keystore.type: PKCS12
+      ssl.key.password: password123
+      ssl.endpoint.identification.algorithm:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        reply.timeout.ms: 10000
+    consumer:
+      group-id: request-response-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      properties:
+        fetch.min.bytes: 1
+        fetch.max.wait.ms: 100
+        session.timeout.ms: 30000
+        heartbeat.interval.ms: 3000
+    listener:
+      type: single
+      ack-mode: record
+      missing-topics-fatal: false
+
+logging:
+  level:
+    org.apache.kafka: INFO
+    org.springframework.kafka: DEBUG
+    com.example.kafka: DEBUG
